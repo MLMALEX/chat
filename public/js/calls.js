@@ -129,7 +129,7 @@
                 method: 'POST',
                 body: JSON.stringify({ conversation_id: id, type }),
             });
-            currentCall = { id: data.call_id, type, role: 'caller', name: data.callee?.name || 'User' };
+            currentCall = { id: data.call_id, type, scope: data.scope || 'direct', role: 'caller', name: data.title || data.callee?.name || 'User' };
             show(currentCall.name, 'Calling…', 'calling');
         } catch (e) {
             alert('Call could not be started: ' + e.message);
@@ -138,8 +138,8 @@
 
     const incomingCall = data => {
         if (currentCall) return;
-        currentCall = { id: data.call_id, type: data.type, role: 'callee', name: data.caller?.name || 'User' };
-        show(currentCall.name, data.type === 'video' ? 'Incoming video call' : 'Incoming audio call', 'incoming');
+        currentCall = { id: data.call_id, type: data.type, scope: data.scope || 'direct', role: 'callee', name: data.title || data.caller?.name || 'User' };
+        show(currentCall.name, (data.scope === 'group' ? 'Incoming group ' : 'Incoming ') + (data.type === 'video' ? 'video call' : 'audio call'), 'incoming');
         try {
             ringtone = new Audio('/vendor/chatify/sounds/incoming.mp3');
             ringtone.loop = true;
@@ -270,6 +270,12 @@
                 if (currentCall?.id !== data.call_id) return;
                 alert('Call declined');
                 await closeUi();
+            })
+            .listen('.call.participant_joined', data => {
+                if (currentCall?.id !== data.call_id || !room) return;
+            })
+            .listen('.call.participant_left', data => {
+                if (currentCall?.id !== data.call_id || !room) return;
             })
             .listen('.call.ended', async data => {
                 if (currentCall?.id !== data.call_id) return;
