@@ -13,7 +13,7 @@ return new class extends Migration
             $table->uuid('conversation_id');
             $table->unsignedBigInteger('caller_id');
             $table->unsignedBigInteger('callee_id');
-            $table->uuid('room_name')->nullable();
+            $table->string('room_name', 64);
             $table->string('type', 10)->default('audio');
             $table->string('status', 20)->default('ringing');
             $table->timestamp('answered_at')->nullable();
