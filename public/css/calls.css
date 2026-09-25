@@ -1,0 +1,13 @@
+#qsn-call-launcher{position:fixed;top:14px;right:22px;z-index:9000;display:none;gap:8px}
+.qsn-call-btn{width:42px;height:42px;border:0;border-radius:50%;background:#2180f3;color:#fff;cursor:pointer;font-size:20px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.qsn-call-btn:hover{filter:brightness(.94)}
+#qsn-call-overlay{position:fixed;inset:0;z-index:20000;background:rgba(10,16,28,.88);display:none;align-items:center;justify-content:center;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+#qsn-call-overlay.qsn-open{display:flex}
+.qsn-call-card{width:min(92vw,680px);min-height:360px;background:#111827;color:#fff;border-radius:24px;padding:28px;box-shadow:0 24px 80px rgba(0,0,0,.45);text-align:center;position:relative}
+.qsn-call-name{font-size:26px;font-weight:700;margin:8px 0}.qsn-call-status{opacity:.75;margin-bottom:18px}
+.qsn-call-videos{display:grid;grid-template-columns:1fr;gap:10px;margin:12px 0 22px}.qsn-call-videos video{width:100%;max-height:330px;background:#05070b;border-radius:16px;object-fit:cover}
+#qsn-local-video{position:absolute;width:150px;right:38px;top:92px;z-index:2}
+.qsn-call-controls{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}.qsn-control{border:0;border-radius:999px;padding:12px 18px;cursor:pointer;font-weight:600}
+.qsn-accept{background:#22c55e;color:#fff}.qsn-reject,.qsn-end{background:#ef4444;color:#fff}.qsn-neutral{background:#374151;color:#fff}
+.qsn-hidden{display:none!important}
+@media(max-width:700px){#qsn-call-launcher{top:10px;right:12px}.qsn-call-card{width:100vw;height:100vh;min-height:100vh;border-radius:0;padding-top:70px}#qsn-local-video{width:110px;right:18px;top:90px}}
