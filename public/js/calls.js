@@ -29,8 +29,12 @@
     };
 
     const conversationId = () => {
-        const match = location.pathname.match(/\/chatify\/([0-9a-f-]{36})\/?$/i);
-        return match ? match[1] : null;
+        const prefix = '/chatify/';
+        const pos = location.pathname.indexOf(prefix);
+        if (pos === -1) return null;
+
+        const id = location.pathname.slice(pos + prefix.length).split('/')[0];
+        return id || null;
     };
 
     const createUi = () => {
