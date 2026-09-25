@@ -81,6 +81,10 @@ class CallController extends Controller
         $row = DB::table('calls')->where('id', $call)->first();
         abort_unless($row, 404);
         abort_unless((int) $row->callee_id === (int) $request->user()->id, 403);
+        if ($data['action'] === 'accept' && $row->status === 'active') {
+            return response()->json(['status' => 'active']);
+        }
+
         abort_unless($row->status === 'ringing', 409, 'This call is no longer ringing.');
 
         if ($data['action'] === 'accept') {
