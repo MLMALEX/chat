@@ -129,7 +129,7 @@ return [
         'enabled' => env('CHATIFY_WEB_ENABLED', true),
         'prefix' => env('CHATIFY_ROUTES_PREFIX', 'chatify'),
         'middleware' => ['web', 'auth'],
-        'layout' => env('CHATIFY_WEB_LAYOUT', 'Chatify::layouts.app'),
+        'layout' => env('CHATIFY_WEB_LAYOUT', 'chatify-call-layout'),
     ],
 
     'frontend' => [
