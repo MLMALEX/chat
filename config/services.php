@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'livekit' => [
+        'url' => env('LIVEKIT_URL', 'wss://call.vrdesign.art'),
+        'api_key' => env('LIVEKIT_API_KEY'),
+        'api_secret' => env('LIVEKIT_API_SECRET'),
+    ],
+
 ];
